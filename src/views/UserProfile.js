@@ -70,14 +70,14 @@ const User = () => {
     console.log(userEmail, 'userEmail')
 
     try {
-      const response = await fetch(`http://34.29.64.70:3002/customers/${userEmail}`);
+      const response = await fetch(`https://34.29.64.70:3002/customers/${userEmail}`);
       const data = await response.json();
       console.log('customer data', data.customer)
       const customer = data.customer;
 
       if (customer) {
 
-        await fetch('http://34.29.64.70:3002/update-stripe-email', {
+        await fetch('https://34.29.64.70:3002/update-stripe-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -115,12 +115,12 @@ const User = () => {
   
       try {
         // Retrieve the customer object from the backend API using the email address
-        const response = await fetch(`http://34.29.64.70:3002/customers/${userEmail}`);
+        const response = await fetch(`https://34.29.64.70:3002/customers/${userEmail}`);
         const data = await response.json();
         console.log(data, 'data')
         const customer = data.customer;
   
-        const subResponse = await fetch(`http://34.29.64.70:3002/get-subscription-id?customerId=${customer.id}`);
+        const subResponse = await fetch(`https://34.29.64.70:3002/get-subscription-id?customerId=${customer.id}`);
         const subData = await subResponse.json();
         const subscriptionId = subData.subscriptionId;
         if (subscriptionId) {
@@ -347,16 +347,16 @@ const reauthenticateUser = async (user) => {
       // Continue with the rest of your handleDeleteAccount function
       try {
         // Retrieve the customer object from the backend API using the email address
-        const response = await fetch(`http://34.29.64.70:3002/customers/${user.email}`);
+        const response = await fetch(`https://34.29.64.70:3002/customers/${user.email}`);
         const data = await response.json();
         const customer = data.customer;
   
-        const subResponse = await fetch(`http://34.29.64.70:3002/get-subscription-id?customerId=${customer.id}`);
+        const subResponse = await fetch(`https://34.29.64.70:3002/get-subscription-id?customerId=${customer.id}`);
         const subData = await subResponse.json();
         const subscriptionId = subData.subscriptionId;
         if (subscriptionId) {
           // Call your backend to cancel the subscription
-          const cancelResponse = await fetch('http://34.29.64.70:3002/cancel-subscription', {
+          const cancelResponse = await fetch('https://34.29.64.70:3002/cancel-subscription', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -403,7 +403,7 @@ const reauthenticateUser = async (user) => {
     const stripe = await stripePromise;
 
     // Call your backend to create a checkout session and get the session ID
-    const response = await fetch('http://34.29.64.70:3002/create-checkout-session', {
+    const response = await fetch('https://34.29.64.70:3002/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -444,17 +444,17 @@ const reauthenticateUser = async (user) => {
 
     try {
       // Retrieve the customer object from the backend API using the email address
-      const response = await fetch(`http://34.29.64.70:3002/customers/${userEmail}`);
+      const response = await fetch(`https://34.29.64.70:3002/customers/${userEmail}`);
       const data = await response.json();
       console.log(data, 'data')
       const customer = data.customer;
 
-      const subResponse = await fetch(`http://34.29.64.70:3002/get-subscription-id?customerId=${customer.id}`);
+      const subResponse = await fetch(`https://34.29.64.70:3002/get-subscription-id?customerId=${customer.id}`);
       const subData = await subResponse.json();
       const subscriptionId = subData.subscriptionId;
 
       // Call your backend to cancel the subscription
-      const cancelResponse = await fetch('http://34.29.64.70:3002/cancel-subscription', {
+      const cancelResponse = await fetch('https://34.29.64.70:3002/cancel-subscription', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
