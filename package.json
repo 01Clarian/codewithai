@@ -1,0 +1,85 @@
+{
+  "name": "light-bootstrap-dashboard-react",
+  "version": "2.0.1",
+  "proxy": "http://34.29.64.70:3002/",
+  "browser": {
+    "http": false,
+    "https": false,
+    "net": false,
+    "path": false,
+    "stream": false,
+    "tls": false,
+    "fs": false
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@hcaptcha/react-hcaptcha": "^1.4.4",
+    "@monaco-editor/react": "^4.4.6",
+    "@stripe/stripe-js": "^1.50.0",
+    "axios": "^1.3.3",
+    "bootstrap": "4.6.0",
+    "concurrently": "^7.6.0",
+    "dotenv": "^16.0.3",
+    "eventsource": "^2.0.2",
+    "firebase": "^9.17.1",
+    "https-browserify": "^1.0.0",
+    "moment": "^2.29.4",
+    "process": "^0.11.10",
+    "react": "^18.2.0",
+    "react-ace": "^10.1.0",
+    "react-bootstrap": "2.4.0",
+    "react-dom": "^18.2.0",
+    "react-firebase-hooks": "^5.1.1",
+    "react-google-recaptcha": "^2.1.0",
+    "react-icons": "^4.7.1",
+    "react-image-crop": "^10.0.9",
+    "react-lazyload-img": "^1.0.3",
+    "react-loader-spinner": "^5.3.4",
+    "react-markdown": "^8.0.5",
+    "react-router-dom": "^6.8.1",
+    "react-scripts": "^5.0.1",
+    "react-select": "^5.7.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "remark-gfm": "^3.0.1",
+    "sass": "1.53.0",
+    "stream-http": "^3.2.0",
+    "stripe": "^11.15.0",
+    "url": "^0.11.0",
+    "util": "^0.12.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "compile:scss": "sass src/assets/scss/light-bootstrap-dashboard-pro-react.scss src/assets/css/light-bootstrap-dashboard-pro-react.css",
+    "minify:scss": "sass src/assets/scss/light-bootstrap-dashboard-pro-react.scss src/assets/css/light-bootstrap-dashboard-pro-react.min.css --style compressed",
+    "build:scss": "npm run compile:scss && npm run minify:scss"
+  },
+  "peerDependencies": {
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "dotenv-webpack": "^8.0.1",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
