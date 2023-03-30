@@ -119,7 +119,7 @@ function TextEditDashboard() {
                 value={fontSize} step="2"
                 onChange={(e) => { setFontSize(e.target.value) }} />
               <NavLink
-                    to="/#/"  
+                    to="/"  
                     className="hovertext" data-hover="min">
                 <FiMinimize size={32} color="#21b23e"
                   className="min-max"
@@ -174,7 +174,7 @@ function TextEditDashboard() {
               }}
             > {mentorName} Mentor
               <NavLink 
-              to="/#/chatbox"
+              to="/chatbox"
               className="hovertext" data-hover="max">
                 <FiMaximize size={32} color="#21b23e"
                   className="min-max"
