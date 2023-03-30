@@ -107,7 +107,7 @@ function ChatDashboard() {
               }}
             > {mentorName} Mentor
               <NavLink 
-              to='/'
+              to='#/'
               className="hovertext" data-hover="min">
                 <FiMinimize size={32} color="#21b23e"
                   className="min-max"

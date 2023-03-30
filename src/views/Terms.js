@@ -7,7 +7,7 @@ const Terms = () => {
                 style={{ textAlign: 'center', padding: '26px' }}
             >
                 <div >
-                    <h3>Terms of Use <Link to="/"
+                    <h3>Terms of Use <Link to="#/"
                         style={{ color: 'yellow', fontSize: "14px" }}>Go Back</Link></h3>
 
 

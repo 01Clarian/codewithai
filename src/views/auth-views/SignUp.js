@@ -118,9 +118,9 @@ const SignUp = () => {
                                 color='green'/> : null}
               </div>
               <div className='d-flex flex-row justify-content-start'>
-              <Link to="/terms-of-service" className="small text-muted me-1">Terms of use.</Link>
+              <Link to="#/terms-of-service" className="small text-muted me-1">Terms of use.</Link>
               </div>
-              <p className="mb-2 pb-lg-2" style={{ color: 'white' }}>Already have an account? <Link to='/signin' style={{ color: '#f2fe85' }}>Sign In here</Link></p>
+              <p className="mb-2 pb-lg-2" style={{ color: 'white' }}>Already have an account? <Link to='#/signin' style={{ color: '#f2fe85' }}>Sign In here</Link></p>
               <AuthButtons
                 setDisplayNameLocal={setDisplayNameLocal}
                 profileImageLocal={profileImageLocal}

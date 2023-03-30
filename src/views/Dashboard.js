@@ -146,7 +146,7 @@ function Dashboard() {
                 value={fontSize} step="2"
                 onChange={(e) => { setFontSize(e.target.value) }} />
               <NavLink
-                to="/text-editor"
+                to="#/text-editor"
                 className="hovertext"
                 data-hover="max">
                 <FiMaximize size={32} color="#21b23e"
@@ -198,7 +198,7 @@ function Dashboard() {
               }}
             > {mentorName} Mentor
               <NavLink
-                to="/chatbox"
+                to="#/chatbox"
                 className="hovertext"
                 data-hover="max">
                 <FiMaximize size={32} color="#21b23e"

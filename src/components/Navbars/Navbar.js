@@ -49,7 +49,7 @@ const handleHomeClick = (e) => {
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
           <Navbar.Brand >
-           <Link style={{cursor:'pointer'}} onClick={handleHomeClick}  to="/"
+           <Link style={{cursor:'pointer'}} onClick={handleHomeClick}  to="#/"
            >CODE WITH AI</Link> 
           </Navbar.Brand>
         </div>
@@ -80,7 +80,7 @@ const handleHomeClick = (e) => {
                 style={{color:'#a4f79f',
               
               }}
-                to="/user">Account</NavLink>
+                to="#/user">Account</NavLink>
               </span>
               <span
                 className="m-0 navlink2"
@@ -90,7 +90,7 @@ const handleHomeClick = (e) => {
                 style={{color:'#a4f79f',
               
               }}
-              onClick={SignOut} to="/">Log Out</NavLink>
+              onClick={SignOut} to="#/">Log Out</NavLink>
               </span>
           </Nav>
         </Navbar.Collapse>

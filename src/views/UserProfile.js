@@ -545,7 +545,7 @@ const reauthenticateUser = async (user) => {
                     <span>
                       <span className="no-icon m-0 link-custom2"
                         style={{ color: 'blue', fontSize: '12px', padding: '10px', cursor: 'pointer' }}
-                        onClick={handleDeleteAccount} to="/user">Delete Account</span>
+                        onClick={handleDeleteAccount} to="#/user">Delete Account</span>
                       {loaderTrigger && <Rings color="green" />}</span>
 
                     {pageMessages.info && (

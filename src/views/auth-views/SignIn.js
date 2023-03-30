@@ -121,7 +121,7 @@ function SignIn() {
                 auth={auth}
               />
               <div className='d-flex flex-row justify-content-start'>
-                <Link to="/terms-of-service" className="small text-muted me-1">Terms of use.</Link>
+                <Link to="#/terms-of-service" className="small text-muted me-1">Terms of use.</Link>
               </div>
 
             </div>
