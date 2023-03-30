@@ -118,7 +118,7 @@ function SignUpForm({
                   data-image-selection='3'
                   data-error-callback='onError'
                   data-tabindex='1'
-  sitekey="30000000-ffff-ffff-ffff-000000000003"
+  sitekey="356460e2-c367-466f-87cc-3229e62a97aa"
   onVerify={(token,ekey) => onVerify(token, ekey)}
   /></div>
                 <Button type="submit" className="mb-4 px-5" variant='dark' size='lg'>Sign Up</Button>
