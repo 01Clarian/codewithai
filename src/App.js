@@ -46,7 +46,7 @@ const App = () => {
                 <ChatContextProvider>
                         <Routes>
                             <Route path="#/signin" element={<SignIn />} />
-                            <Route exact path='/' element={user ? <Dashboard /> : <SignIn />} />
+                            <Route exact path='#/' element={user ? <Dashboard /> : <SignIn />} />
                             <Route path="#/user" element={<User />} />
                             <Route path="#/signup" element={<SignUp />} />
                             <Route path="#/text-editor" element={<TextEditDashboard />} />
