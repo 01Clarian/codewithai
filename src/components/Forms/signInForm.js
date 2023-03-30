@@ -113,7 +113,7 @@ function SignInForm({
                     className="mb-4 px-5" variant='dark' size='lg'>Reset Password</Button>
                 </Form>
             }
-            <p className="mb-2 pb-lg-2" style={{ color: 'white' }}>Don't have an account? <Link to='#/signup' style={{ color: '#f2fe85' }}>Sign Up here</Link></p>
+            <p className="mb-2 pb-lg-2" style={{ color: 'white' }}>Don't have an account? <Link to='/#/signup' style={{ color: '#f2fe85' }}>Sign Up here</Link></p>
         </>
     );
 }
