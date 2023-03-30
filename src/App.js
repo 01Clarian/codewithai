@@ -47,7 +47,7 @@ const App = () => {
                         <Routes>
                             <Route path="signin" element={<SignIn />} />
                             <Route exact path='/' element={user ? <Dashboard /> : <SignIn />} />
-                            <Route path="/codewithai/user" element={<User />} />
+                            <Route path="/user" element={<User />} />
                             <Route path="/signup" element={<SignUp />} />
                             <Route path="/text-editor" element={<TextEditDashboard />} />
                             <Route path="/chatbox" element={<ChatDashboard />} />
