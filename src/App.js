@@ -45,13 +45,13 @@ const App = () => {
             <TextEditorProvider>
                 <ChatContextProvider>
                         <Routes>
-                            <Route path="/#/signin" element={<SignIn />} />
-                            <Route path='/#/' element={user ? <Dashboard /> : <SignIn />} />
-                            <Route path="/#/user" element={<User />} />
-                            <Route path="/#/signup" element={<SignUp />} />
-                            <Route path="/#/text-editor" element={<TextEditDashboard />} />
-                            <Route path="/#/chatbox" element={<ChatDashboard />} />
-                            <Route path="/#/terms-of-service" element={<Terms />} />
+                            <Route path="/signin" element={<SignIn />} />
+                            <Route exact path='/' element={user ? <Dashboard /> : <SignIn />} />
+                            <Route path="/user" element={<User />} />
+                            <Route path="/signup" element={<SignUp />} />
+                            <Route path="/text-editor" element={<TextEditDashboard />} />
+                            <Route path="/chatbox" element={<ChatDashboard />} />
+                            <Route path="/terms-of-service" element={<Terms />} />
                         </Routes>
                 </ChatContextProvider>
             </TextEditorProvider>
