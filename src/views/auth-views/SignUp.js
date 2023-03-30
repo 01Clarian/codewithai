@@ -28,6 +28,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const SignUp = () => {
 
   const [isVerified, setIsVerified] = useState(false);
+  const [token, setToken] = useState("");
   const [displayNameLocal, setDisplayNameLocal] = useLocalStorage('displayName', '');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -96,7 +97,6 @@ const SignUp = () => {
   
   return (
     <div>
-        {console.log(isVerified, 'isVerified')}
       <Container className="my-5 mr-4">
         <Row>
           <Col md={4}>
@@ -111,6 +111,8 @@ const SignUp = () => {
                   <SignUpForm
                   {...signInFormProps}
                   setIsVerified={setIsVerified}
+                  token={token}
+                  setToken={setToken}
                   /> 
                       {loading ? <Rings
                                 color='green'/> : null}

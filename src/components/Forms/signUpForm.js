@@ -14,6 +14,8 @@ function SignUpForm({
     setPageMSG,
     handleSignUp,
     setIsVerified,
+    token,
+    setToken,
     confirmPassword,
     setConfirmPassword,
     email,
@@ -28,7 +30,7 @@ function SignUpForm({
   }) {
 
     const onVerify = (token, ekey) => {
-      if (ekey) {
+      if (!ekey) {
         // handle error
         setIsVerified(false);
       } else {
