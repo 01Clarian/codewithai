@@ -11,6 +11,6 @@ createRoot(document.getElementById("root")).render(
   <HashRouter>
     <Router>
     <App />
-  </Router>
+  </Router >
   </HashRouter>
 );
