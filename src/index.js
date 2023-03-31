@@ -8,9 +8,7 @@ import "./assets/css/index.css";
 import "./assets/scss/light-bootstrap-dashboard-react.scss?v=2.0.0";
 
 createRoot(document.getElementById("root")).render(
-  <HashRouter>
     <Router>
     <App />
   </Router >
-  </HashRouter>
 );
