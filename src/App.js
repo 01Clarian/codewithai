@@ -13,7 +13,7 @@ import { ChatContextProvider } from './context/chatContext';
 import { TextEditorProvider } from './context/textEditorContext';
 import { ConsoleProvider } from './context/consoleContext';
 import { UserProfileProvider } from './context/userProfileContext';
-import {Rings} from 'react-loader-spinner';
+import {Rings } from 'react-loader-spinner';
 
 
 import './assets/css/index.css';
