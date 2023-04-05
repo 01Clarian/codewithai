@@ -66,7 +66,7 @@ function ChatProcessor() {
     setLoading(true);
     setUserOutput('');
 
-    Axios.post('https://34.173.47.246:8000/compile', {
+    Axios.post('https://compile.codewithai.org/compile', {
       code: userCode || consoleInitializer(userLang),
       language: userLang,
       input: userInput,
