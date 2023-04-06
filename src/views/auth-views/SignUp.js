@@ -17,6 +17,7 @@ import Footer from "components/Footer/Footer";
 import 'firebase/database';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { createUserDocument, getDisplayName } from '../../firebase';
+import crypto from 'crypto-browserify';
 
 import {
   getAuth,
@@ -26,19 +27,18 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 
 const generateToken = (user) => {
-  const token = jwt.sign(
-    {
-      uid: user.uid,
-      displayName: user.displayName,
-      email: user.email,
-      photoURL: user.photoURL,
-    },
-    process.env.REACT_APP_JWT_SECRET,
-  //  { expiresIn: '1h' }
-  );
-  return token;
+  const secret = process.env.REACT_APP_JWT_SECRET;
+  const header = { alg: 'HS256', typ: 'JWT' };
+  const payload = {
+    uid: user.uid,
+    displayName: user.displayName,
+    email: user.email,
+  };
+  const base64Header = Buffer.from(JSON.stringify(header)).toString('base64');
+  const base64Payload = Buffer.from(JSON.stringify(payload)).toString('base64');
+  const signature = crypto.createHmac('sha256', secret).update(`${base64Header}.${base64Payload}`).digest('base64');
+  return `${base64Header}.${base64Payload}.${signature}`;
 };
-
 const SignUp = () => {
 
   const [isVerified, setIsVerified] = useState(false);
