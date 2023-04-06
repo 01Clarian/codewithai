@@ -25,6 +25,20 @@ import {
 } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 
+const generateToken = (user) => {
+  const token = jwt.sign(
+    {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+    },
+    process.env.REACT_APP_JWT_SECRET,
+  //  { expiresIn: '1h' }
+  );
+  return token;
+};
+
 const SignUp = () => {
 
   const [isVerified, setIsVerified] = useState(false);
@@ -34,6 +48,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [userNameSignUp, setUserNameSignUp] = useState('');
+  const [authToken, setAuthToken] = useLocalStorage('authToken', '');
   const [errors, setErrors] = useState({ email: null, provider: null, password: null, forgotEmail: null });
   const [pageMSG, setPageMSG] = useState(null);  const auth = getAuth();
   const navigate = useNavigate();
@@ -65,6 +80,8 @@ const SignUp = () => {
       setDisplayNameLocal(displayNameSignUp)
       await createUserDocument(userSignUp, displayNameSignUp, authId);
       await updateProfile(user, { displayName: userNameSignUp });
+      const token = generateToken(user);
+      setAuthToken(token);
       setEmail('');
       setPassword('');
       setConfirmPassword('');

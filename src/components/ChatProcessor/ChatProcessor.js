@@ -44,9 +44,12 @@ function ChatProcessor() {
     'displayName',
     ''
   );
+  const [authToken, setAuthToken] = useLocalStorage('authToken', '');
+
   const [messageHistory, setMessageHistory] = useState([]);
 
   useEffect(() => {
+    console.log('token', authToken)
     // Wait for authentication state to load before rendering component
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {

@@ -13,6 +13,7 @@ import Footer from "components/Footer/Footer";
 import 'firebase/database'
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { createUserDocument, getDisplayName, getPhotoURL } from '../../firebase'
+import jwt from 'jsonwebtoken';
 
 
 import {
@@ -29,6 +30,7 @@ function SignIn() {
 
   const [profileImageLocal, setProfileImageLocal] = useLocalStorage('profileImage', '');
   const [runDisplayLocalTest, setRunDisplayLocalTest] = useLocalStorage('getNameTest', '');
+  const [authToken, setAuthToken] = useLocalStorage('authToken', '');
 
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotPasswordForm, setForgotPasswordForm] = useState(false);
@@ -40,6 +42,19 @@ function SignIn() {
   const [pageMSG, setPageMSG] = useState(null);
   const navigate = useNavigate();
 
+  const generateToken = (user) => {
+    const token = jwt.sign(
+      {
+        uid: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+      },
+      process.env.REACT_APP_JWT_SECRET,
+    //  { expiresIn: '1h' }
+    );
+    return token;
+  };
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -56,8 +71,10 @@ function SignIn() {
       await setRunDisplayLocalTest(userMatchUIDDisplayName);
       setProfileImageLocal(userPhotoURL);
 
-        await updateProfile(user, { displayName: userMatchUIDDisplayName });
+      await updateProfile(user, { displayName: userMatchUIDDisplayName });
 
+      const token = generateToken(user);
+      setAuthToken(token);
       setEmail('');
       setPassword('');
       setUserNameSignUp('');
@@ -67,8 +84,6 @@ function SignIn() {
       setErrors(prevErrors => ({ ...prevErrors, email: 'The email and/or password you have provided is incorrect or does not exist. Please create a new accout or click on forgot password.' }));
     }
   };
-
-
 
   const signInFormProps = {
     pageMSG,
