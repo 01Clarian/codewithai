@@ -5,7 +5,7 @@ module.exports = {
   // ... other config options
   resolve: {
     fallback: {
-      stream: false,
+      stream: require.resolve("stream-browserify"),
       buffer: require.resolve('buffer/'),
     },
   },
