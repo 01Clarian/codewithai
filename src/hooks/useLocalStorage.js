@@ -11,13 +11,16 @@ const useLocalStorage = (key, initialValue) => {
     }
   })
 
-  const setValue = (value) => {
+  const setValue = (value, callback) => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
-
+  
       setStoredValue(prevValue => {
         const newValue = valueToStore instanceof Function ? valueToStore(prevValue) : valueToStore;
         window.localStorage.setItem(key, JSON.stringify(newValue));
+        if (callback) {
+          callback();
+        }
         return newValue;
       });
     } catch (error) {
