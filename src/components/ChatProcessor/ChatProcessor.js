@@ -34,22 +34,16 @@ function ChatProcessor() {
 
   const [messages, addMessage, setMessages, limit, setLimit, 
   thinking, setThinking, ,, loadingAPI, setLoadingAPI,
-  iconLoaded, setIconLoaded] =
-    useContext(ChatContext);
+  iconLoaded, setIconLoaded] = useContext(ChatContext);
 
-    const {email, setEmail} =
-        useContext(UserProfileContext);
+  const {email, setEmail} = useContext(UserProfileContext);
 
-  const [displayNameLocal, setDisplayNameLocal] = useLocalStorage(
-    'displayName',
-    ''
-  );
-  const [authToken, setAuthToken] = useLocalStorage('authToken', '');
-
+  const [displayNameLocal, setDisplayNameLocal] = useLocalStorage('displayName','');
+  const [firebaseToken, setFirebaseToken] = useLocalStorage('token', '');
   const [messageHistory, setMessageHistory] = useState([]);
 
   useEffect(() => {
-    console.log('token', authToken)
+    console.log('fireBasetoken in chat process', firebaseToken)
     // Wait for authentication state to load before rendering component
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -155,7 +149,7 @@ function ChatProcessor() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${firebaseToken}`,
       },
       body: JSON.stringify({
         prompt: `Respond in chat format with an explanation and code example or solution to the following message like you are a friendly and encouraging senior ${userLang} tutor speaking to ${userName}.  

@@ -30,6 +30,7 @@ const SignUp = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [token, setToken] = useState("");
   const [displayNameLocal, setDisplayNameLocal] = useLocalStorage('displayName', '');
+  const [firebaseToken, setFirebaseToken] = useLocalStorage('token', '');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -65,6 +66,9 @@ const SignUp = () => {
       setDisplayNameLocal(displayNameSignUp)
       await createUserDocument(userSignUp, displayNameSignUp, authId);
       await updateProfile(user, { displayName: userNameSignUp });
+      const idToken = await user.getIdToken();
+      setFirebaseToken(idToken); // Save the ID token
+      console.log('firebaseToken',firebaseToken)
       setEmail('');
       setPassword('');
       setConfirmPassword('');

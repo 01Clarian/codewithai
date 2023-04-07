@@ -28,7 +28,7 @@ function SignIn() {
 
   const [profileImageLocal, setProfileImageLocal] = useLocalStorage('profileImage', '');
   const [runDisplayLocalTest, setRunDisplayLocalTest] = useLocalStorage('getNameTest', '');
-
+  const [firebaseToken, setFirebaseToken] = useLocalStorage('token', '');
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotPasswordForm, setForgotPasswordForm] = useState(false);
   const [email, setEmail] = useState('');
@@ -53,9 +53,10 @@ function SignIn() {
       await setDisplayNameLocal(userMatchUIDDisplayName);
       await setRunDisplayLocalTest(userMatchUIDDisplayName);
       setProfileImageLocal(userPhotoURL);
-
       await updateProfile(user, { displayName: userMatchUIDDisplayName });
-
+      const idToken = await user.getIdToken();
+      setFirebaseToken(idToken); // Save the ID token
+      console.log('firebaseToken',firebaseToken)
       setEmail('');
       setPassword('');
       setUserNameSignUp('');

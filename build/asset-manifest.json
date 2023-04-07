@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.802c2e15.css",
+    "main.js": "/static/js/main.b8cd92cb.js",
+    "static/media/code3.jpg": "/static/media/code3.81fa1a903eca747530f1.jpg",
+    "static/media/code4.jpg": "/static/media/code4.f305caaf482ed5210912.jpg",
+    "static/media/nucleo-icons.svg": "/static/media/nucleo-icons.e8827b8a8e3df089befd.svg",
+    "static/media/i.png": "/static/media/i.704d4c89f5e3ee174861.png",
+    "static/media/receptionist.png": "/static/media/receptionist.b1a5434dec42d0ef6146.png",
+    "static/media/nucleo-icons.eot": "/static/media/nucleo-icons.541f8898b990ff017268.eot",
+    "static/media/nucleo-icons.ttf": "/static/media/nucleo-icons.a30d0b0201482fcfffd3.ttf",
+    "static/media/nucleo-icons.woff": "/static/media/nucleo-icons.141e0c4652975b501bab.woff",
+    "static/media/nucleo-icons.woff2": "/static/media/nucleo-icons.69d4ebfdc94eab6fdb6e.woff2",
+    "index.html": "/index.html",
+    "main.802c2e15.css.map": "/static/css/main.802c2e15.css.map",
+    "main.b8cd92cb.js.map": "/static/js/main.b8cd92cb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.802c2e15.css",
+    "static/js/main.b8cd92cb.js"
+  ]
+}
