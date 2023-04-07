@@ -55,9 +55,7 @@ function SignIn() {
       setProfileImageLocal(userPhotoURL);
       await updateProfile(user, { displayName: userMatchUIDDisplayName });
       const idToken = await user.getIdToken();
-      setFirebaseToken(idToken, () => {
-        console.log('firebaseToken', firebaseToken);
-      }); // Save the ID token
+      setFirebaseToken('test this out'); // Save the ID token
       console.log('firebaseToken',firebaseToken)
       setEmail('');
       setPassword('');
