@@ -67,6 +67,7 @@ const SignUp = () => {
       await createUserDocument(userSignUp, displayNameSignUp, authId);
       await updateProfile(user, { displayName: userNameSignUp });
       const idToken = await user.getIdToken();
+      console.log(idToken, 'idtoken')
       setFirebaseToken(idToken); // Save the ID token
       console.log('firebaseToken',firebaseToken)
       setEmail('');
