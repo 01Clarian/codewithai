@@ -25,7 +25,7 @@ import { useNavigate, Link } from 'react-router-dom';
 function SignIn() {
 
   const [displayNameLocal, setDisplayNameLocal] = useLocalStorage('displayName', '');
-
+  const [idTokenTrans, setidTokenTrans] = useState('');
   const [profileImageLocal, setProfileImageLocal] = useLocalStorage('profileImage', '');
   const [runDisplayLocalTest, setRunDisplayLocalTest] = useLocalStorage('getNameTest', '');
   const [firebaseToken, setFirebaseToken] = useLocalStorage('token', '');
@@ -57,6 +57,7 @@ function SignIn() {
       setProfileImageLocal(userPhotoURL);
       await updateProfile(user, { displayName: userMatchUIDDisplayName });
       const idToken = await user.getIdToken();
+      setidTokenTrans(idToken)
       setFirebaseToken('test this out'); // Save the ID token
       console.log('firebaseToken',firebaseToken)
       setEmail('');
@@ -89,7 +90,7 @@ function SignIn() {
 
   useEffect(() => {
     console.log('Updated firebaseToken:', firebaseToken);
-    console.log('idTOKEN',idToken)
+    console.log('idTOKEN',idTokenTrans)
   }, [firebaseToken]);
 
 
