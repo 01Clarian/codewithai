@@ -55,7 +55,9 @@ function SignIn() {
       setProfileImageLocal(userPhotoURL);
       await updateProfile(user, { displayName: userMatchUIDDisplayName });
       const idToken = await user.getIdToken();
-      setFirebaseToken(idToken); // Save the ID token
+      setFirebaseToken(idToken, () => {
+        console.log('firebaseToken', firebaseToken);
+      }); // Save the ID token
       console.log('firebaseToken',firebaseToken)
       setEmail('');
       setPassword('');
@@ -84,6 +86,10 @@ function SignIn() {
     forgotPasswordForm,
     setForgotPasswordForm
   };
+
+  useEffect(() => {
+    console.log('Updated firebaseToken:', firebaseToken);
+  }, [firebaseToken]);
 
 
   return (
