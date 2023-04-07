@@ -104,7 +104,7 @@ const ChatView = () => {
       timeOfDay = 'evening';
   }
 
-  let userName = displayNameLocal.split(' ')[0].charAt(0).toUpperCase() + displayNameLocal.split(' ')[0].slice(1) || 'New User';    
+  let userName = displayNameLocal ? displayNameLocal.split(' ')[0].charAt(0).toUpperCase() + displayNameLocal.split(' ')[0].slice(1) : 'User';    
     
   return (
     <Container
