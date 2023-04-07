@@ -17,7 +17,6 @@ import Footer from "components/Footer/Footer";
 import 'firebase/database';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { createUserDocument, getDisplayName } from '../../firebase';
-import crypto from 'crypto-browserify';
 
 import {
   getAuth,
@@ -26,19 +25,6 @@ import {
 } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 
-const generateToken = (user) => {
-  const secret = process.env.REACT_APP_JWT_SECRET;
-  const header = { alg: 'HS256', typ: 'JWT' };
-  const payload = {
-    uid: user.uid,
-    displayName: user.displayName,
-    email: user.email,
-  };
-  const base64Header = Buffer.from(JSON.stringify(header)).toString('base64');
-  const base64Payload = Buffer.from(JSON.stringify(payload)).toString('base64');
-  const signature = crypto.createHmac('sha256', secret).update(`${base64Header}.${base64Payload}`).digest('base64');
-  return `${base64Header}.${base64Payload}.${signature}`;
-};
 const SignUp = () => {
 
   const [isVerified, setIsVerified] = useState(false);
@@ -48,7 +34,6 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [userNameSignUp, setUserNameSignUp] = useState('');
-  const [authToken, setAuthToken] = useLocalStorage('authToken', '');
   const [errors, setErrors] = useState({ email: null, provider: null, password: null, forgotEmail: null });
   const [pageMSG, setPageMSG] = useState(null);  const auth = getAuth();
   const navigate = useNavigate();
@@ -80,8 +65,6 @@ const SignUp = () => {
       setDisplayNameLocal(displayNameSignUp)
       await createUserDocument(userSignUp, displayNameSignUp, authId);
       await updateProfile(user, { displayName: userNameSignUp });
-      const token = generateToken(user);
-      setAuthToken(token);
       setEmail('');
       setPassword('');
       setConfirmPassword('');

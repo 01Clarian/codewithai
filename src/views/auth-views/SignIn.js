@@ -9,7 +9,6 @@ import {
 import { FaKeyboard } from 'react-icons/fa';
 import code3 from '../../assets/img/code3.jpg'
 import Footer from "components/Footer/Footer";
-import crypto from 'crypto-browserify';
 
 import 'firebase/database'
 import useLocalStorage from '../../hooks/useLocalStorage';
@@ -29,7 +28,6 @@ function SignIn() {
 
   const [profileImageLocal, setProfileImageLocal] = useLocalStorage('profileImage', '');
   const [runDisplayLocalTest, setRunDisplayLocalTest] = useLocalStorage('getNameTest', '');
-  const [authToken, setAuthToken] = useLocalStorage('authToken', '');
 
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotPasswordForm, setForgotPasswordForm] = useState(false);
@@ -40,20 +38,6 @@ function SignIn() {
   const [errors, setErrors] = useState({ email: null, provider: null, password: null, forgotEmail: null });
   const [pageMSG, setPageMSG] = useState(null);
   const navigate = useNavigate();
-
-  const generateToken = (user) => {
-    const secret = process.env.REACT_APP_JWT_SECRET;
-    const header = { alg: 'HS256', typ: 'JWT' };
-    const payload = {
-      uid: user.uid,
-      displayName: user.displayName,
-      email: user.email,
-    };
-    const base64Header = Buffer.from(JSON.stringify(header)).toString('base64');
-    const base64Payload = Buffer.from(JSON.stringify(payload)).toString('base64');
-    const signature = crypto.createHmac('sha256', secret).update(`${base64Header}.${base64Payload}`).digest('base64');
-    return `${base64Header}.${base64Payload}.${signature}`;
-  };
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -72,8 +56,6 @@ function SignIn() {
 
       await updateProfile(user, { displayName: userMatchUIDDisplayName });
 
-      const token = generateToken(user);
-      setAuthToken(token);
       setEmail('');
       setPassword('');
       setUserNameSignUp('');
