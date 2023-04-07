@@ -91,7 +91,7 @@ function SignIn() {
   useEffect(() => {
     console.log('Updated firebaseToken:', firebaseToken);
     console.log('idTOKEN',idTokenTrans)
-  }, [firebaseToken]);
+  }, [idTokenTrans]);
 
 
   return (
