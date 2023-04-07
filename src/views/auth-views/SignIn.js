@@ -29,6 +29,7 @@ function SignIn() {
   const [profileImageLocal, setProfileImageLocal] = useLocalStorage('profileImage', '');
   const [runDisplayLocalTest, setRunDisplayLocalTest] = useLocalStorage('getNameTest', '');
   const [firebaseToken, setFirebaseToken] = useLocalStorage('token', '');
+
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotPasswordForm, setForgotPasswordForm] = useState(false);
   const [email, setEmail] = useState('');
@@ -51,6 +52,7 @@ function SignIn() {
 
     //  console.log( 'usdf',userMatchUIDDisplayName)
       await setDisplayNameLocal(userMatchUIDDisplayName);
+      console.log(displayNameLocal, 'displayNameLocal');
       await setRunDisplayLocalTest(userMatchUIDDisplayName);
       setProfileImageLocal(userPhotoURL);
       await updateProfile(user, { displayName: userMatchUIDDisplayName });
@@ -87,6 +89,7 @@ function SignIn() {
 
   useEffect(() => {
     console.log('Updated firebaseToken:', firebaseToken);
+    console.log('idTOKEN',idToken)
   }, [firebaseToken]);
 
 
