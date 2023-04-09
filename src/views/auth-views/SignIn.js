@@ -86,7 +86,7 @@ function SignIn() {
   };
 
   useEffect(() => {
-    console.log('Updated firebaseToken aa:', firebaseToken);
+  //  console.log('Updated firebaseToken aa:', firebaseToken);
   }, [firebaseToken]);
 
   useEffect(() => {

@@ -30,7 +30,7 @@ import {
   ProgressBar
 } from "react-bootstrap";
 
-const stripePromise = loadStripe('pk_test_51MnoGbGrQMzRMVY12ubI1U3PA0P56QPfuy9pwGh6t9q4nbpWPJiw25WHtZtFZiVLXOc3NtmLJj623yyrOhOYwclT00yTpQNSRN');
+const stripePromise = loadStripe('pk_live_51MnoGbGrQMzRMVY1OQZoWonmcWoHUROPhXaRMO0cpwn0jBGNLjWA1FsvlRnyk8t5pr3jYHbErch18mgcUoFKMGhY00PJzRIMHK');
 
 const User = () => {
 

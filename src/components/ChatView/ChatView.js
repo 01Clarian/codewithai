@@ -35,7 +35,7 @@ const ChatView = () => {
   }, []); // 
 
   useEffect(()=>{
-    console.log('chatview fb toke', firebaseToken)
+  //  console.log('chatview fb toke', firebaseToken)
   },[firebaseToken])
 
   const userPhotoFirebase = async (userId) => {

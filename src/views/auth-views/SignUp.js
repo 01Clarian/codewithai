@@ -83,7 +83,7 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    console.log('Updated firebaseToken:', firebaseToken);
+  //  console.log('Updated firebaseToken:', firebaseToken);
   }, [firebaseToken]);
 
   const signInFormProps = {

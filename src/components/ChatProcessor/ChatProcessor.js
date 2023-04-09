@@ -55,7 +55,7 @@ function ChatProcessor() {
         setEmail(user.email);
         const retrieveTokenId = await getIdOfToken(user);
         setFirebaseToken(retrieveTokenId);
-        console.log('firebaseToken', firebaseToken);
+      //  console.log('firebaseToken', firebaseToken);
       }
     });
   
@@ -66,7 +66,7 @@ function ChatProcessor() {
   },[iconLoaded])
 
   useEffect(()=>{
-    console.log('chatprocess fb toke', firebaseToken)
+  //  console.log('chatprocess fb toke', firebaseToken)
   },[firebaseToken])
 
   function compile() {
@@ -116,7 +116,7 @@ function ChatProcessor() {
 
   const sendMessage = async (e) => {
 
-    console.log('sendMsg', firebaseToken)
+  //  console.log('sendMsg', firebaseToken)
     e.preventDefault();
     if (loadingAPI) return;
     setLoadingAPI(true);
