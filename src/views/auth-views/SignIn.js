@@ -29,7 +29,7 @@ function SignIn() {
   const [profileImageLocal, setProfileImageLocal] = useLocalStorage('profileImage', '');
   const [runDisplayLocalTest, setRunDisplayLocalTest] = useLocalStorage('getNameTest', '');
   const [firebaseToken, setFirebaseToken] = useLocalStorage('token', '');
-
+  const [signInAll, setSignInAll] = useState(false);
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotPasswordForm, setForgotPasswordForm] = useState(false);
   const [email, setEmail] = useState('');
@@ -45,23 +45,19 @@ function SignIn() {
     setErrors({});
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
-      console.log('user uid', user.uid);
+      const idToken = await user.getIdToken();
+      console.log('Generated ID token:', idToken);
+      await setFirebaseToken(idToken); // Save the ID token
       const userMatchUIDDisplayName = await getDisplayName(user.uid);
       const userPhotoURL = await getPhotoURL(user.uid);
-    //  console.log( 'user photo url',userPhotoURL)
-
-    //  console.log( 'usdf',userMatchUIDDisplayName)
       await setDisplayNameLocal(userMatchUIDDisplayName);
       console.log(displayNameLocal, 'displayNameLocal');
       await setRunDisplayLocalTest(userMatchUIDDisplayName);
       setProfileImageLocal(userPhotoURL);
       await updateProfile(user, { displayName: userMatchUIDDisplayName });
-      const idToken = await user.getIdToken();
-      setidTokenTrans('try this')
-      setFirebaseToken('test this out'); // Save the ID token
-      console.log('firebaseToken',firebaseToken)
       setEmail('');
       setPassword('');
+      setSignInAll(true);
       setUserNameSignUp('');
       navigate('/');
     } catch (error) {
@@ -73,6 +69,7 @@ function SignIn() {
   const signInFormProps = {
     pageMSG,
     setPageMSG,
+    signInAll,
     handleSignIn,
     forgotEmail,
     email,
@@ -89,10 +86,12 @@ function SignIn() {
   };
 
   useEffect(() => {
-    console.log('Updated firebaseToken:', firebaseToken);
-    console.log('idTOKEN',idTokenTrans)
-  }, [idTokenTrans]);
+    console.log('Updated firebaseToken aa:', firebaseToken);
+  }, [firebaseToken]);
 
+  useEffect(() => {
+    console.log('Updated signInAll:', signInAll);
+  }, [signInAll]);
 
   return (
     <div>

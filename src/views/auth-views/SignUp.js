@@ -53,7 +53,7 @@ const SignUp = () => {
         return;
     }
     if (!isVerified) {
-      // Don't allow sign-up if hCaptcha verification has not been completed
+      // *change Don't allow sign-up if hCaptcha verification has not been completed
       return;
     }
     try {
@@ -63,14 +63,12 @@ const SignUp = () => {
       const userSignUp = user.email;
       const displayNameSignUp = userNameSignUp;
       const authId = user.uid;
+      const idToken = await user.getIdToken();
+      console.log(idToken, 'idtoken')
+      setFirebaseToken(idToken); // Save the ID token
       setDisplayNameLocal(displayNameSignUp)
       await createUserDocument(userSignUp, displayNameSignUp, authId);
       await updateProfile(user, { displayName: userNameSignUp });
-      const idToken = await user.getIdToken();
-      console.log(idToken, 'idtoken')
-      setFirebaseToken(idToken, () => {
-        console.log('firebaseToken', firebaseToken);
-      }); // Save the ID token
       setEmail('');
       setPassword('');
       setConfirmPassword('');

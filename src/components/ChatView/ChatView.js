@@ -21,10 +21,10 @@ const ChatView = () => {
     thinking, setThinking, viewSwitch, setViewSwitch] = useContext(ChatContext)
   const [displayNameLocal, setDisplayNameLocal] = useLocalStorage('displayName', '');
   const [profileImageLocal, setProfileImageLocal] = useLocalStorage('profileImage', '');
+  const [firebaseToken, setFirebaseToken] = useLocalStorage('token', '');
   const [emailLocal, setEmailLocal] = useLocalStorage('email', '');
   const { aiLangIcon, setAiLangIcon } = useContext(TextEditorContext);
   const [time, setTime] = useState(null);
-
 
   useEffect(() => {
   }, [displayNameLocal]);
@@ -34,18 +34,22 @@ const ChatView = () => {
     setTime(moment(new Date()).calendar());
   }, []); // 
 
+  useEffect(()=>{
+    console.log('chatview fb toke', firebaseToken)
+  },[firebaseToken])
+
   const userPhotoFirebase = async (userId) => {
     return await getPhotoURL(userId);
   }
 
   useEffect(() => {
     const auth = getAuth();
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setEmailLocal(user.email);
         setDisplayNameLocal(user.displayName);
         setProfileImageLocal(user.photoURL);
-        userPhotoFirebase(user.uid).then(url => {
+        userPhotoFirebase(user.uid).then((url) => {
           if (url) {
             setProfileImageLocal(url || ImageIcon);
           }
@@ -53,7 +57,6 @@ const ChatView = () => {
       } else {
         setEmailLocal('');
         setDisplayNameLocal('friend');
-
       }
     });
     return () => unsubscribe();

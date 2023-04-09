@@ -42,22 +42,32 @@ function ChatProcessor() {
   const [firebaseToken, setFirebaseToken] = useLocalStorage('token', '');
   const [messageHistory, setMessageHistory] = useState([]);
 
+  const getIdOfToken = async (user) => {
+    const id = await user.getIdToken();
+    return id;
+  };
+
   useEffect(() => {
     console.log('fireBasetoken in chat process', firebaseToken)
     // Wait for authentication state to load before rendering component
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setEmail(user.email);
+        const retrieveTokenId = await getIdOfToken(user);
+        setFirebaseToken(retrieveTokenId);
+        console.log('firebaseToken', firebaseToken);
       }
     });
-
+  
     return () => unsubscribe();
   }, []);
 
+  useEffect(()=>{
+  },[iconLoaded])
 
   useEffect(()=>{
-
-  },[iconLoaded])
+    console.log('chatprocess fb toke', firebaseToken)
+  },[firebaseToken])
 
   function compile() {
     setLoading(true);
@@ -105,6 +115,8 @@ function ChatProcessor() {
   }
 
   const sendMessage = async (e) => {
+
+    console.log('sendMsg', firebaseToken)
     e.preventDefault();
     if (loadingAPI) return;
     setLoadingAPI(true);

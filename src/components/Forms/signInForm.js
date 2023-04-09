@@ -10,6 +10,7 @@ import {
 function SignInForm({
     pageMSG,
     setPageMSG,
+    signInAll,
     handleSignIn,
     forgotEmail,
     email,
