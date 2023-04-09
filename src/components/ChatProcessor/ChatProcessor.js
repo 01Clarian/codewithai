@@ -48,7 +48,7 @@ function ChatProcessor() {
   };
 
   useEffect(() => {
-    console.log('fireBasetoken in chat process', firebaseToken)
+   // console.log('fireBasetoken in chat process', firebaseToken)
     // Wait for authentication state to load before rendering component
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
