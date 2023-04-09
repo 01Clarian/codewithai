@@ -46,7 +46,7 @@ function SignIn() {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
       const idToken = await user.getIdToken();
-      console.log('Generated ID token:', idToken);
+    //  console.log('Generated ID token:', idToken);
       await setFirebaseToken(idToken); // Save the ID token
       const userMatchUIDDisplayName = await getDisplayName(user.uid);
       const userPhotoURL = await getPhotoURL(user.uid);

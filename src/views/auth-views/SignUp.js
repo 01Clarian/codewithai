@@ -64,7 +64,7 @@ const SignUp = () => {
       const displayNameSignUp = userNameSignUp;
       const authId = user.uid;
       const idToken = await user.getIdToken();
-      console.log(idToken, 'idtoken')
+     // console.log(idToken, 'idtoken')
       setFirebaseToken(idToken); // Save the ID token
       setDisplayNameLocal(displayNameSignUp)
       await createUserDocument(userSignUp, displayNameSignUp, authId);
