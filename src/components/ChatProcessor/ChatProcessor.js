@@ -32,13 +32,13 @@ function ChatProcessor() {
 
   const navigate = useNavigate();
 
-  const [messages, addMessage, setMessages, limit, setLimit,
-    thinking, setThinking, , , loadingAPI, setLoadingAPI,
-    iconLoaded, setIconLoaded] = useContext(ChatContext);
+  const [messages, addMessage, setMessages, limit, setLimit, 
+  thinking, setThinking, ,, loadingAPI, setLoadingAPI,
+  iconLoaded, setIconLoaded] = useContext(ChatContext);
 
-  const { email, setEmail } = useContext(UserProfileContext);
+  const {email, setEmail} = useContext(UserProfileContext);
 
-  const [displayNameLocal, setDisplayNameLocal] = useLocalStorage('displayName', '');
+  const [displayNameLocal, setDisplayNameLocal] = useLocalStorage('displayName','');
   const [firebaseToken, setFirebaseToken] = useLocalStorage('token', '');
   const [messageHistory, setMessageHistory] = useState([]);
 
@@ -48,26 +48,26 @@ function ChatProcessor() {
   };
 
   useEffect(() => {
-    // console.log('fireBasetoken in chat process', firebaseToken)
+   // console.log('fireBasetoken in chat process', firebaseToken)
     // Wait for authentication state to load before rendering component
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setEmail(user.email);
         const retrieveTokenId = await getIdOfToken(user);
         setFirebaseToken(retrieveTokenId);
-        //  console.log('firebaseToken', firebaseToken);
+      //  console.log('firebaseToken', firebaseToken);
       }
     });
-
+  
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-  }, [iconLoaded])
+  useEffect(()=>{
+  },[iconLoaded])
 
-  useEffect(() => {
-    //  console.log('chatprocess fb toke', firebaseToken)
-  }, [firebaseToken])
+  useEffect(()=>{
+  //  console.log('chatprocess fb toke', firebaseToken)
+  },[firebaseToken])
 
   function compile() {
     setLoading(true);
@@ -86,8 +86,8 @@ function ChatProcessor() {
       })
       .catch((error) => {
         console.error('Error:', error);
-        !userOutput ? setUserOutput(`Looks like you haven't typed any code in the text editor...`)
-          : setUserOutput(`The compiler has experienced a processing error...`)
+      !userOutput ? setUserOutput(`Looks like you haven't typed any code in the text editor...`)
+      : setUserOutput(`The compiler has experienced a processing error...`)
 
       })
       .finally(() => {
@@ -109,14 +109,14 @@ function ChatProcessor() {
   };
 
   const delayTyping = () => {
-    setTimeout(() => {
+    setTimeout(()=>{
       setThinking(true)
-    }, 100)
+    },100)
   }
 
   const sendMessage = async (e) => {
 
-    //  console.log('sendMsg', firebaseToken)
+  //  console.log('sendMsg', firebaseToken)
     e.preventDefault();
     if (loadingAPI) return;
     setLoadingAPI(true);
@@ -146,50 +146,49 @@ function ChatProcessor() {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const POST_URL = BASE_URL + 'davinci';
 
-    let userName = displayNameLocal.split(' ')[0].charAt(0).toUpperCase() + displayNameLocal.split(' ')[0].slice(1);
-
+    let userName = displayNameLocal.split(' ')[0].charAt(0).toUpperCase() + displayNameLocal.split(' ')[0].slice(1);    
+    
     !userInput ? updateMessage('Analyze the following...', false) : updateMessage(userInput, false);
 
     let aiMessage = userCode
-
+    
       ? `this is additional code for context: ${userCode} and this is the question that needs to be answered: ${userInput}`
       : `this is the question that needs to be answered: ${userInput}`;
 
-    setThinking(true);
+      setThinking(true);
 
-    try {
-      const response = await fetch(POST_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${firebaseToken}`,
-        },
-        body: JSON.stringify({
-          prompt: `Respond in chat format with an explanation and code example or solution to the following message like you are a friendly and encouraging senior ${userLang} tutor speaking to ${userName}.  
+    const response = await fetch(POST_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${firebaseToken}`,
+      },
+      body: JSON.stringify({
+        prompt: `Respond in chat format with an explanation and code example or solution to the following message like you are a friendly and encouraging senior ${userLang} tutor speaking to ${userName}.  
         These questions should be based on the context of the following online coding lesson and conversation where ${aiMessage}. 
         IT IS VERY IMPORTANT THAT If the question and code is referring to a different coding language other than ${userLang} then also let ${userName}  know to select a different AI Mentor in the dropdown menu above, but if it's a library or framework that is part of the language selected then continue to provide detailed explanations and answers to their questions. 
         The following words are the message history wrapped in 5 asterixes of the conversation only to be used as reference and last priority if you are unsure of the general context: ***** ${messageHistoryCopy} *****`,
-          email: email,
-          userInput: userInput, // Include userInput in the request body
-        }),
-      }).then((res) => res.json());
-      console.log('limit', response.limit);
-      console.log('response', response)
-      console.log(response.status, 'response statuss')
-      if (response.status === 429) {
-        updateMessage(
-          "You have reached your limit of free test requests. In order to unlock the AI Mentor and use the App, please go to Account and click subscribe for unlimited access.",
-          true
-        );
-        setThinking(false);
-        setLoadingAPI(false);
-        alert('You have reached your limit of free test requests. In order to unlock the AI Mentor and use the App, please go to Account and click subscribe for unlimited access.')
-        navigate('/user');
-        return;
-      }
+        email: email,
+        userInput: userInput, // Include userInput in the request body
+      }),
+    }).then((res) => res.json());
+    console.log('limit',response.limit);
+    console.log('response', response)
+    console.log(response.status, 'response statuss')
+    if (response.status === 429) {
+      updateMessage(
+        "You have reached your limit of free test requests. In order to unlock the AI Mentor and use the App, please go to Account and click subscribe for unlimited access.",
+        true
+      );
+      setThinking(false);
+      setLoadingAPI(false);
+      alert('You have reached your limit of free test requests. In order to unlock the AI Mentor and use the App, please go to Account and click subscribe for unlimited access.')
+      navigate('/user');
+      return;
+    }
     compile();
     setThinking(false);
-    updateMessage(response.bot, true);
+  updateMessage(response.bot, true); 
 
     setMessageHistory([
       ...messageHistoryCopy,
@@ -208,15 +207,6 @@ function ChatProcessor() {
     setThinking(false);
     setLoadingAPI(false);
     setUserInput('');
-
-  } catch (error) {
-    console.error('Error:', error.message);
-    updateMessage(
-      "We are currently experiencing an error with your request. Please try again later.",
-      true
-    );
-    // Add any additional error handling or user notifications here
-  }
   };
 
   function handleInputChange(event) {
