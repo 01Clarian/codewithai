@@ -444,7 +444,7 @@ const reauthenticateUser = async (user) => {
 
     try {
       // Retrieve the customer object from the backend API using the email address
-      const response = await fetch(`https://34.29.64.70:3002/customers/${userEmail}`);
+      const response = await fetch(`https://api.codewithai.org/customers/${userEmail}`);
       const data = await response.json();
       console.log(data, 'data')
       const customer = data.customer;

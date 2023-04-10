@@ -117,7 +117,6 @@ function SignUpForm({
                   size={userNameSignUp !== '' ? 'normal' : 'invisible'}
                   theme='dark'
                   width='10'
-                  data-image-selection='3'
                   data-error-callback='onError'
                   data-tabindex='1'
   sitekey="356460e2-c367-466f-87cc-3229e62a97aa"
